@@ -32,6 +32,7 @@ public class Ejercicio3Redis {
 
     public static void LeerFichero(File Ffichero) {
         long startTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
         try {
             Jedis jedis = new Jedis("localHost");
             System.out.println("Conexion exitosa");
@@ -50,11 +51,11 @@ public class Ejercicio3Redis {
                     personas.add(persona);
                     jedis.set(persona.getCedula(), persona.getCedula()+" "+persona.getNombre()+" "+persona.getApellido()+
                             " "+persona.getFechaNace());
-                    long endTime = System.currentTimeMillis() - startTime;
-                    //System.out.println("Duración: " + endTime + " ms");
+                    endTime = System.currentTimeMillis() - startTime;
+                    
                     
                 }
-                
+                System.out.println("Duración: " + endTime + " ms");
                 Flee.close();
             } else {
                 System.out.println("Fichero No Existe");
