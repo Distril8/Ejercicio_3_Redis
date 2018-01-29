@@ -26,7 +26,7 @@ public class Ejercicio3Redis {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        File Ffichero = new File("final.txt");
+        File Ffichero = new File("MiFichero.txt");
         LeerFichero(Ffichero);
     }
 
@@ -48,12 +48,13 @@ public class Ejercicio3Redis {
                     persona.setApellido(cortarString[2]);
                     persona.setFechaNace(cortarString[3]);
                     personas.add(persona);
-                    jedis.lpush(persona.getCedula(), persona.getCedula()+" "+persona.getNombre()+" "+persona.getApellido()+
+                    jedis.set(persona.getCedula(), persona.getCedula()+" "+persona.getNombre()+" "+persona.getApellido()+
                             " "+persona.getFechaNace());
                     long endTime = System.currentTimeMillis() - startTime;
+                    //System.out.println("Duración: " + endTime + " ms");
                     
                 }
-                System.out.println("Duración: " + endTime + " ms");
+                
                 Flee.close();
             } else {
                 System.out.println("Fichero No Existe");
